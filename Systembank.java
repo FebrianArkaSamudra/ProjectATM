@@ -50,6 +50,7 @@ public class Systembank {
                     
                     break;
                 case 5:
+                System.out.println("Your balance info is ");
                     
                     break;
                 default:
