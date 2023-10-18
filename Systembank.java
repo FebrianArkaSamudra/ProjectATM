@@ -1,3 +1,4 @@
+import java.net.Socket;
 import java.util.Scanner;
 
 public class Systembank {
@@ -33,12 +34,59 @@ public class Systembank {
             System.out.println("3. Transfer");
             System.out.println("4. Payment");
             System.out.println("5. Balance Info");
+            System.out.println("====================================");
+            System.out.print("Choose the menu : ");
             
             int pilihan = scan.nextInt();
          
             switch (pilihan) {
                 case 1:
-                    
+                System.out.println("Please select the withdrawal amount");
+                System.out.println("1. Rp 100.000");
+                System.out.println("2. Rp 250.000");
+                System.out.println("3. Rp 500.000");
+                System.out.println("4. Rp 1.000.000");
+                System.out.println("5. Other Amount");
+                System.out.print("Choose menu : ");
+                int witdrawalamount = scan.nextInt();
+                    switch (witdrawalamount) {
+                        case 1:
+                            System.out.println("=============================");
+                            System.out.println(" You Withdrawal : Rp 100.000  ");
+                            System.out.println("    Transaction Complete     ");
+                            System.out.println("         Thank You :)        ");
+                            System.out.println("=============================");
+                        break;
+                        case 2:
+                            System.out.println("=============================");
+                            System.out.println(" You Withdrawal : Rp 250.000  ");
+                            System.out.println("    Transaction Complete     ");
+                            System.out.println("         Thank You :)        ");
+                            System.out.println("=============================");
+                        break;
+                        case 3:
+                            System.out.println("=============================");
+                            System.out.println(" You Withdrawal : Rp 500.000  ");
+                            System.out.println("    Transaction Complete     ");
+                            System.out.println("         Thank You :)        ");
+                            System.out.println("=============================");
+                        break;
+                        case 4:
+                            System.out.println("=============================");
+                            System.out.println(" You Withdrawal : Rp 1.000.000");
+                            System.out.println("    Transaction Complete     ");
+                            System.out.println("         Thank You :)        ");
+                            System.out.println("=============================");
+                        break;
+                        case 5:
+                            System.out.print("Type The Amount : ");
+                            int typeamount = scan.nextInt();
+                            System.out.println("=============================");
+                            System.out.println(" You Withdrawal : Rp " + typeamount);
+                            System.out.println("    Transaction Complete     ");
+                            System.out.println("         Thank You :)        ");
+                            System.out.println("=============================");
+                }
                     break;
                 case 2:
                     
