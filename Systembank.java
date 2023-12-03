@@ -2,7 +2,6 @@ import java.net.Socket;
 import java.util.Scanner;
 
 
-
 public class Systembank {
     public static void main(String[] args) {
         Scanner scan = new Scanner (System.in);
@@ -48,6 +47,15 @@ public class Systembank {
             System.out.println("====================================");
             switch (pilihan) {
                 case 1:
+                    System.out.println("Please select the withdrawal amount");
+                    System.out.println("1. Rp 100.000");
+                    System.out.println("2. Rp 250.000");
+                    System.out.println("3. Rp 500.000");
+                    System.out.println("4. Rp 1.000.000");
+                    System.out.println("5. Other Amount");
+                    System.out.println("====================================");
+                    System.out.print("Choose Nominal : ");
+                    int witdrawalamount = scan.nextInt();
                 System.out.println("Please select the withdrawal amount");
                 System.out.println("1. Rp 100.000");
                 System.out.println("2. Rp 250.000");
@@ -104,6 +112,9 @@ public class Systembank {
                 }
                     break;
                 case 2:
+                    System.out.print("Input Virtual Account : ");
+                    int virtualacc = scan.nextInt();
+                    System.out.print("Input Nominal : ");
                     System.out.println("Input Virtual Account : ");
                     int virtualacc = scan.nextInt();
                     System.out.println("Input Nominal : ");
@@ -126,19 +137,19 @@ public class Systembank {
                             break;
                 case 3:
                 int amount = 9000000;
-                System.out.println("Input account");
+                System.out.println("Input account :");
                 String account = scan.next();
-                System.out.println("Input nominal");
+                System.out.println("Input nominal :");
                 int transfers = scan.nextInt();
                 System.out.println("balance succeeded transfers to " + account + "amount of Rp." + transfers);
                 int balanceAmount = amount-transfers;
                 System.out.println("Your balance amount is " + balanceAmount);
                
-                System.out.println("Back to the menu (y/n) ?");
+                System.out.print("Back to the menu (y/n) ?");
                 String exit = scan.next();
-            switch (exit) {
+                switch (exit) {
                 case "y" :
-                    System.out.println("Backt to the menu");
+                    System.out.println("Back to the menu");
                     break;
                 case "n" :
                     System.out.println("Thank you");
@@ -146,7 +157,7 @@ public class Systembank {
                 }
                     break;
                 case 4:
-            while (payment) {
+                while (payment) {
                 System.out.println("*******");
                 System.out.println("\n Menu payment");
                 System.out.println("1. PDAM" );
@@ -156,9 +167,9 @@ public class Systembank {
                 
                 switch (choosePayment){
                     case 1 :
-                        System.out.println("Input username PDAM");
+                        System.out.println("Input username PDAM : ");
                         String usernamePDAM = scan.next();
-                        System.out.println("Input phone number PDAM");
+                        System.out.println("Input phone number PDAM : ");
                         int phonePDAM = scan.nextInt();
                         //System.out.println("Input payment PDAM");
                         if (usernamePDAM.equalsIgnoreCase("Majid")){
@@ -182,9 +193,9 @@ public class Systembank {
                     break;
 
                     case 2 :
-                        System.out.println("Input usernamePLN");
+                        System.out.println("Input usernamePLN : ");
                         String usernamePLN = scan.next();
-                        System.out.println("Input phone numberPLN");
+                        System.out.println("Input phone numberPLN : ");
                         long phoneNumberPLN = scan.nextInt();
                         //System.out.println("Input paymentPLN");
                         //int nominalpaymentPLN = scan.nextInt();
