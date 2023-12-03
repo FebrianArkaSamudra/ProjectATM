@@ -1,27 +1,31 @@
+import java.net.Socket;
 import java.util.Scanner;
-
-import javax.xml.transform.Source;
 
 public class Systembank {
     public static void main(String[] args) {
-        Scanner scan = new Scanner (System.in);
+        Scanner scan = new Scanner(System.in);
         boolean login = true;
         boolean menu = false;
         boolean payment = true;
-        
+        String[] userLogin = { "Arka", "Baq", "Majid", "Xavier" };
+        String[] password = { "123", "456", "789", "987" };
+        int[] balance = { 1000000, 1000000, 1000000, 1000000 };
+        int id = -1;
         while (login) {
-            System.out.print("Input Username = ");
-            String user = scan.next(); 
-            System.out.print("Input Password = ");
-            int pass = scan.nextInt();
-            if (user.equals("Majid") && pass == 123){
-                login = false;
-                menu = true;
-            } 
-            else {
-            System.out.println("Wrong!");
-                login = true;
-                menu = false;
+            System.out.print("~ Input Username = ");
+            String user = scan.next();
+            System.out.print("~ Input Password = ");
+            String pass = scan.next();
+            int userLoginIndex = -1;
+           
+            for (int x = 0; x < userLogin.length; x++) {
+                if (user.equals(userLogin[x]) && pass.equals(password[x])) {
+                    System.out.println("LOGIN SUCCESS !!");
+                    login = false;
+                    menu = true;
+                    id = x;
+                    break;
+                }
             }
                 if (login) {
                     System.out.println("Login Failed");
@@ -124,14 +128,25 @@ public class Systembank {
                             System.out.println("Okey");
                         break;
                     case 3:
-                        int amount = 9000000;
+                    int[] balancee = { 1000000, 1000000, 1000000, 1000000 };
                         System.out.println("Input account :");
                         String account = scan.next();
                         System.out.println("Input nominal :");
                         int transfers = scan.nextInt();
                         System.out.println("balance succeeded transfers to " + account + "amount of Rp." + transfers);
-                        int balanceAmount = amount - transfers;
+                        int balanceAmount = balancee[id] - transfers;
                         System.out.println("Your balance amount is " + balanceAmount);
+
+                        
+                                System.out.println(
+                                    
+                                "====================================");
+                                System.out.println(" balance succeeded transfers to " + account);
+                                System.out.println("   amount of : Rp " + transfers);
+                                System.out.println("        Transfers Complete     ");
+                                System.out.println("            Thank You :)        ");
+                                System.out.println("====================================");
+                                menu = false;
 
                         System.out.print("Back to the menu (y/n) ?");
                         String exit = scan.next();
@@ -168,7 +183,7 @@ public class Systembank {
 
                                             case "y":
                                                 System.out.println("your payment is succesfull");
-                                                amount = 9000000;
+                                                int amount = 9000000;
                                                 int pdamBill = amount - 100000;
                                                 System.out.println("Your balance amount is" + pdamBill);
                                             case "n":
@@ -196,7 +211,7 @@ public class Systembank {
 
                                             case "y":
                                                 System.out.println("your payment is succesfull");
-                                                amount = 9000000;
+                                                int amount = 9000000;
                                                 int plnBill = amount - 200000;
                                                 System.out.println("Your balance amount is" + plnBill);
                                                 break;
@@ -226,4 +241,3 @@ public class Systembank {
         }
     }
 }
-
