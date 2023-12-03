@@ -227,6 +227,7 @@ public class Systembank {
                         }
                         else{
                             System.out.println("Thank you");
+                            menu= false;
                         }
                     
                     
