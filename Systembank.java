@@ -1,52 +1,34 @@
 import java.net.Socket;
 import java.util.Scanner;
 
-
-
 public class Systembank {
     public static void main(String[] args) {
-        Scanner scan = new Scanner (System.in);
+        Scanner scan = new Scanner(System.in);
         boolean login = true;
         boolean menu = false;
         boolean payment = true;
-        
-        
-        while (login) {
-            System.out.print("~ Input Username = ");
-            String user = scan.next(); 
-            System.out.print("~ Input Password = ");
-            int pass = scan.nextInt();
-            if (user.equals("Majid") && pass == 123){
-                login = false;
-                menu = true;
-            } 
-            else {
-            System.out.println("Wrong!");
-                login = true;
-                menu = false;
-            }
-        }
-        
-        while (menu) {
-            System.out.println("");
-            System.out.println("====================================");
-            System.out.println("------ Welcome to Bank Qwerty ------");
-            System.out.println("====================================");
-            System.out.println("1. Withdraw");
-            System.out.println("2. Top up");
-            System.out.println("3. Transfer");
-            System.out.println("4. Payment");
+        String[] UserLogin = { "Arka", "Baq", "Majid", "Xavier" };
+        int[] saldo = {1000000,1000000,1000000,1000000};
+        int[] password = {123,456,789,987};
+    }
 
-            System.out.println("5. Balance Info");
-            System.out.println("====================================");
-            System.out.print("Choose the menu : ");
-            System.out.println("5. Cash Deposit");
-            System.out.println("6. Balance Info");
-            System.out.println("7. Bill");
-            System.out.println("Choose your option");
-            int pilihan = scan.nextInt();
-            System.out.println("====================================");
-            switch (pilihan) {
+    while(login){System.out.print("~ Input Username = ");
+
+    String user = scan.next();System.out.print("~ Input Password = ");
+    int pass = scan.nextInt();if(user.equals("Majid")&&pass==123)
+    {
+        login = false;
+        menu = true;
+    }else
+    {
+        System.out.println("Wrong!");
+        login = true;
+        menu = false;
+    }}
+
+    while(menu){System.out.println("");System.out.println("====================================");System.out.println("------ Welcome to Bank Qwerty ------");System.out.println("====================================");System.out.println("1. Withdraw");System.out.println("2. Top up");System.out.println("3. Transfer");System.out.println("4. Payment");System.out.println("5. Balance Info");System.out.println("====================================");System.out.print("Choose the menu : ");System.out.println("5. Cash Deposit");System.out.println("6. Balance Info");System.out.println("7. Bill");System.out.println("Choose your option");
+    int pilihan = scan.nextInt();System.out.println("====================================");switch(pilihan)
+    {
                 case 1:
                 System.out.println("Please select the withdrawal amount");
                 System.out.println("1. Rp 100.000");
@@ -234,9 +216,8 @@ public class Systembank {
                     break;
                     
             }
-        } 
-       
-    }
-        
 }
 
+}
+
+}
