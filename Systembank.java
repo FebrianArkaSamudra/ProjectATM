@@ -9,8 +9,9 @@ public class Systembank {
         boolean payment = true;
         String[] userLogin = { "Arka", "Baq", "Majid", "Xavier" };
         String[] password = { "123", "456", "789", "987" };
-        int[] balance = { 1000000, 1000000, 1000000, 1000000 };
-        int id = -1;
+        int[] balance = { 100, 1000, 10000, 100000 };
+        int[]topup = new int[4];
+        int id = 0 ;
         while (login) {
             System.out.print("~ Input Username = ");
             String user = scan.next();
@@ -32,7 +33,7 @@ public class Systembank {
                     break;
                 }
                 
-
+            int idxTopup = 0;   
             while (menu) {
                 System.out.println("");
                 System.out.println("====================================");
@@ -106,12 +107,11 @@ public class Systembank {
                         }
                         break;
                     case 2:
+                        
+                        //for (int i=0;i<topup.length;i++) {
                         System.out.print("Input Virtual Account : ");
                         int virtualacc = scan.nextInt();
                         System.out.print("Input Nominal : ");
-                        System.out.println("Input Virtual Account : ");
-                        int virtualAcc = scan.nextInt();
-                        System.out.println("Input Nominal : ");
                         int inputnominal = scan.nextInt();
                         System.out.println("=========================================================");
                         System.out.println("You Will Topup To " + virtualacc + " Of Rp " + inputnominal);
@@ -122,11 +122,20 @@ public class Systembank {
                             System.out.println("Topup Rp " + inputnominal + " To " + virtualacc);
                             System.out.println("    Done");
                             System.out.println(" Thankyou :)");
-                            menu = false;
-
+                            balance[id] = balance[id] - inputnominal;
+                            topup[idxTopup++] = balance[id];
+                            System.out.println("Saldo sisa anda" +balance[id]);
+                            
+                            
+                            
                         } else
-                            System.out.println("Okey");
-                        break;
+                        System.out.println("Okey");
+                        menu=true;
+                        login=false;
+                    //}
+                        
+                        break; 
+                        
                     case 3:
                         int amount = 9000000;
                         System.out.println("Input account :");
