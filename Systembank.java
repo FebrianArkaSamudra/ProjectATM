@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class Systembank {
@@ -16,6 +15,7 @@ public class Systembank {
         int[] billPln = { 200000, 100000, 175000, 250000 };
         String[] codeNumPLN = { "12345", "54321", "12468", "13577" };
         int[]topup = new int[4];
+        int[]transfer = new int [50];
         int id = -1;
         while (login) {
             System.out.print("~ Input Username = ");
@@ -154,6 +154,19 @@ public class Systembank {
                         System.out.println("            Thank You :)        ");
                         System.out.println("====================================");
                         menu = false;
+                        String choices = scan.next(); 
+                        if (choices.equalsIgnoreCase("y")) {
+                            System.out.println("Transfer Rp " + balanceAmount + " To " + account);
+                            System.out.println(" Done ");
+                            System.out.println(" Thank you :) ");
+                            balance[id] = balance[id] - balanceAmount;
+                            topup[idxTopup++] = balance[id];
+                            System.out.println("Your balance change" +balance[id]);
+                            
+                            
+                            
+                        } else
+                        System.out.println("Ok");
 
                         System.out.print("Back to the menu (y/n) ?");
                         String exit = scan.next();
