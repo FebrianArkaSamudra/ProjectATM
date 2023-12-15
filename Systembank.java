@@ -2,60 +2,12 @@
 import java.util.Scanner;
 
 public class Systembank {
-    public static void main(String[] args) {
-        String[][] history = new String[50][3];
-        Scanner scan = new Scanner(System.in);
-        boolean login = true;
-        boolean menu = false;
-        boolean payment = true;
-        String[] userLogin = { "Arka", "Baq", "Majid", "Xavier" };
-        String[] password = { "123", "456", "789", "987" };
-        int[] balance = { 10000000, 9000000, 2000000, 5000000 };
-        int[] billPdam = { 250000, 150000, 200000, 300000 };
-        String[] codeNumPDAM = { "12345", "54321", "12468", "13577" };
-        int[] billPln = { 200000, 100000, 175000, 250000 };
-        String[] codeNumPLN = { "12345", "54321", "12468", "13577" };
-        int[]topup = new int[4];
-        int id = -1;
-        while (login) {
-            System.out.print("~ Input Username = ");
-            String user = scan.next();
-            System.out.print("~ Input Password = ");
-            String pass = scan.next();
 
-            for (int x = 0; x < userLogin.length; x++) {
-                if (user.equals(userLogin[x]) && pass.equals(password[x])) {
-                    System.out.println("LOGIN SUCCESS !!");
-                    login = false;
-                    menu = true;
-                    id = x;
-                    break;
-                }
-            }
-            if (login) {
-                System.out.println("Login Failed");
-                break;
-            }
+    static int idxHistory = -1;
 
-            int idxTopup = 0;  
-            while (menu) {
-                System.out.println("");
-                System.out.println("====================================");
-                System.out.println( "------ Welcome to Bank Qwerty ----                                                            --");
-                System.out.println("====================================");
-                System.out.println("Choose the menu : ");
-                System.out.println("1. Withdraw");
-                System.out.println("2. Top up");
-                System.out.println("3. Transfer");
-                System.out.println("4. Payment");
-                System.out.println("5. Balance Info");
-                System.out.println("6. History");
-                System.out.println("Choose your option");
-                int pilihan = scan.nextInt();
-                System.out.println("====================================");
-                switch (pilihan) {
-                    case 1:
-                        System.out.println("Please select the withdrawal amount");
+    static void Withdraw (String[][] hist){
+    Scanner scan = new Scanner(System.in);
+    System.out.println("Please select the withdrawal amount");
                         System.out.println("1. Rp 100.000");
                         System.out.println("2. Rp 250.000");
                         System.out.println("3. Rp 500.000");
@@ -66,37 +18,38 @@ public class Systembank {
                         int witdrawalamount = scan.nextInt();
 
                         switch (witdrawalamount) {
-                            case 1:
+                            case 100000:
                                 System.out.println("====================================");
                                 System.out.println("    You Withdrawal : Rp 100.000  ");
                                 System.out.println("        Transaction Complete     ");
                                 System.out.println("            Thank You :)        ");
                                 System.out.println("====================================");
-                                menu = false;
+                                
+                                
                                 break;
-                            case 2:
+                            case 250000:
                                 System.out.println("====================================");
                                 System.out.println("    You Withdrawal : Rp 250.000  ");
                                 System.out.println("        Transaction Complete     ");
                                 System.out.println("            Thank You :)        ");
                                 System.out.println("====================================");
-                                menu = false;
+                                
                                 break;
-                            case 3:
+                            case 500000:
                                 System.out.println("====================================");
                                 System.out.println("    You Withdrawal : Rp 500.000  ");
                                 System.out.println("        Transaction Complete     ");
                                 System.out.println("            Thank You :)        ");
                                 System.out.println("====================================");
-                                menu = false;
+                                
                                 break;
-                            case 4:
+                            case 1000000:
                                 System.out.println("====================================");
                                 System.out.println("   You Withdrawal : Rp 1.000.000");
                                 System.out.println("        Transaction Complete     ");
                                 System.out.println("            Thank You :)        ");
                                 System.out.println("====================================");
-                                menu = false;
+                                
                                 break;
                             case 5:
                                 System.out.println("Multiples Of Rp 50.000");
@@ -107,12 +60,29 @@ public class Systembank {
                                 System.out.println("        Transaction Complete     ");
                                 System.out.println("            Thank You :)        ");
                                 System.out.println("====================================");
-                                menu = false;
+                                
                                 break;
                         }
-                        break;
-                    case 2:
-                    System.out.print("Input Virtual Account : ");
+                        System.out.println("Do you want back to menu?(y/n)");
+                        String choosewitdrawal = scan.next();
+
+                        if (choosewitdrawal.equalsIgnoreCase("y")) {
+                            
+                        } 
+                        else{
+                            System.out.println("Thank you");
+                            System.exit(0);
+                        }
+                        idxHistory++;
+                        hist[idxHistory][0] = "user";
+                        hist[idxHistory][1] = witdrawalamount+"";
+                        hist[idxHistory][2] = "withdrawal";
+                        
+    }   
+
+    static void Topup (int id,int[]balance,String[][] hist){
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Input Virtual Account : ");
                     int virtualacc = scan.nextInt();
                     System.out.print("Input Nominal : ");
                     int inputnominal = scan.nextInt();
@@ -126,20 +96,26 @@ public class Systembank {
                         System.out.println("    Done");
                         System.out.println(" Thankyou :)");
                         balance[id] = balance[id] - inputnominal;
-                        topup[idxTopup++] = balance[id];
                         System.out.println("Saldo sisa anda" +balance[id]);
                         
                         
                         
-                    } else
-                    System.out.println("Okey");
-                    menu=true;
-                    login=false;
-                
+                    } else{
+                        System.out.println("Okey");
+                    }
+                        idxHistory++;
+                        hist[idxHistory][0] = "user";
+                        hist[idxHistory][1] = inputnominal+"";
+                        hist[idxHistory][2] = "Top-Up";
                     
-                    break; 
-                    case 3:
-                        int[] balancee = { 1000000, 1000000, 1000000, 1000000 };
+                    
+                
+
+    }
+
+    static void Transfer(int id,String[][] hist){
+        Scanner scan = new Scanner(System.in);
+     int[] balancee = { 1000000, 1000000, 1000000, 1000000 };
                         System.out.println("Input account :");
                         String account = scan.next();
                         System.out.println("Input nominal :");
@@ -153,7 +129,7 @@ public class Systembank {
                         System.out.println("        Transfers Complete     ");
                         System.out.println("            Thank You :)        ");
                         System.out.println("====================================");
-                        menu = false;
+                        
 
                         System.out.print("Back to the menu (y/n) ?");
                         String exit = scan.next();
@@ -164,11 +140,18 @@ public class Systembank {
                             case "n":
                                 System.out.println("Thank you");
                                 System.exit(0);
+                                break;
                         }
-                        break;
-                    case 4:
-                        do {
-                            System.out.println("*******");
+                        idxHistory++;
+                        hist[idxHistory][0] = "user";
+                        hist[idxHistory][1] = transfers+"";
+                        hist[idxHistory][2] = "Transfer";
+    }
+
+    static void Payment(int id,int[]balance,int[]billPdam,int[]billPln,boolean payment,String[] codeNumPDAM,String[] userLogin,String[] codeNumPLN,String[][] hist){
+        Scanner scan = new Scanner(System.in);
+        
+        do {
                             System.out.println("\n Menu payment");
                             System.out.println("1. PDAM");
                             System.out.println("2. PLN ");
@@ -182,34 +165,40 @@ public class Systembank {
                                     System.out.print("Input phone number PDAM : ");
                                     String phonePDAM = scan.next();
                                     for (int x = 0; x < userLogin.length; x++) {
-                                        if (usernamePDAM.equals(userLogin[x]) && phonePDAM.equals(codeNumPDAM[x])) {
-                                            id = x;
-                                            break;
+                                        if (usernamePDAM.equals(userLogin[id]) && phonePDAM.equals(codeNumPDAM[id])) {
+                                            
+                                            System.out.println("Your PDAM bill is " + billPdam[id]);
+                                            System.out.println("Do you want to pay your bill(y/n)?");
+                                            String billPDAM = scan.next();
+                                            switch (billPDAM) {
+        
+                                                case "y":
+                                                    System.out.println("your payment is succesfull");
+                                                    balance[id] = balance[id] - billPdam[id];
+                                                    System.out.println("Your balance amount is " + balance[id]);
+                                                    break;
+                                                case "n":
+                                                    System.out.println("Thank you");
+                                                    payment = false;
+                                                    break;
+                                                default:
+                                                    System.out.println("Invalid input. Please enter 'y' or 'n'.");
+                                                    break;
+                                                }
+                                               break;
+                                            }
+                                            else {
+                                               System.out.println("Username or Code number wrong");
+                                               break;
+                                           }
                                         }
-                                    }
-                                    if (id != -1) {
-                                        System.out.println("Your PDAM bill is " + billPdam[id]);
-                                        System.out.println("Do you want to pay your bill(y/n)?");
-                                        String billPDAM = scan.next();
-                                        switch (billPDAM) {
+                                        idxHistory++;
+                                        hist[idxHistory][0] = "user";
+                                        hist[idxHistory][1] = billPdam[id]+"";
+                                        hist[idxHistory][2] = "PDAM";
+                                        break;
+                                    
 
-                                            case "y":
-                                                System.out.println("your payment is succesfull");
-                                                balance[id] = balance[id] - billPdam[id];
-                                                System.out.println("Your balance amount is " + balance[id]);
-                                                break;
-                                            case "n":
-                                                System.out.println("Thank you");
-                                                payment = false;
-                                                break;
-                                            default:
-                                                System.out.println("Invalid input. Please enter 'y' or 'n'.");
-                                        }
-
-                                    } else {
-                                        System.out.println("Username or Code number wrong");
-                                    }
-                                    break;
 
                                 case 2:
                                     System.out.print("Input username PLN : ");
@@ -217,13 +206,8 @@ public class Systembank {
                                     System.out.print("Input phone number PLN : ");
                                     String phonePLN = scan.next();
                                     for (int x = 0; x < userLogin.length; x++) {
-                                        if (usernamePLN.equals(userLogin[x]) && phonePLN.equals(codeNumPLN[x])) {
-                                            id = x;
-                                            break;
-                                        }
-                                    }
-                                    if (id != -1) {
-                                        System.out.println("Your PLN bill is " + billPln[id]);
+                                        if (usernamePLN.equals(userLogin[id]) && phonePLN.equals(codeNumPLN[id])) {
+                                            System.out.println("Your PLN bill is " + billPln[id]);
                                         System.out.println("Do you want to pay your bill(y/n)?");
                                         String billPLN = scan.next();
                                         switch (billPLN) {
@@ -240,47 +224,143 @@ public class Systembank {
                                             default:
                                                 System.out.println("Invalid input. Please enter 'y' or 'n'.");
                                         }
-                                    } else {
-                                        System.out.println("Username or Code number wrong");
+                                            break;
+                                        }
+                                        else {
+                                           System.out.println("Username or Code number wrong");
+                                           break;
+                                       }
                                     }
+                                    idxHistory++;
+                                    hist[idxHistory][0] = "user";
+                                    hist[idxHistory][1] = billPln[id]+"";
+                                    hist[idxHistory][2] = "PLN";
+                                        
                                     break;
 
+                                    
+
                                 case 3:
-                                    menu = false;
+                                    payment = false;
                                     break;
                                 default:
                                     System.out.println("Wrong");
                             }
-                            System.out.println("Do you want to make another payment (y/n)?");
-                            String continuePayment = scan.next();
-                            if (continuePayment.equalsIgnoreCase("y")) {
-                                payment = true;
-                            } else if (continuePayment.equalsIgnoreCase("n")) {
-                                menu = true;
-                                payment = false;
-                            }
-                        } while (payment);
-
-                        break;
-
-                    case 5:
-                        System.out.println("Balance Info:");
+                            
+                        } 
+                        while (payment);
+                        
+                        
+    }
+    
+    static void balanceinfo (int id,int []balance,String[]userLogin,String[][] hist){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Balance Info:");
                         System.out.println("Username: " + userLogin[id]);
                         System.out.println("Balance: Rp " + balance[id]);
                         System.out.println("\n You want back to menu \n Y/N?");
                         String back = scan.next();
                         if (back.equalsIgnoreCase("y")) {
-                            menu = true;
-                        } else {
+                            
+                        } 
+                        else{
                             System.out.println("Thank you");
-                            menu = false;
+                            System.exit(0);
                         }
-                        break;
+                        idxHistory++;
+                        hist[idxHistory][0] = "user";
+                        hist[idxHistory][1] = balance[id]+"";
+                        hist[idxHistory][2] = "Balance Info";
+                        
+    }
+    public static void main(String[] args) {
+        String[][] history = new String[50][3];
+        Scanner scan = new Scanner(System.in);
+        boolean login = true;
+        boolean menu = true;
+        boolean payment = true;
+        String[] userLogin = { "Arka", "Baq", "Majid", "Xavier" };
+        String[] password = { "123", "456", "789", "987" };
+        int[] balance = { 10000000, 9000000, 2000000, 5000000 };
+        int[] billPdam = { 250000, 150000, 200000, 300000 };
+        String[] codeNumPDAM = { "12345", "54321", "12468", "13577" };
+        int[] billPln = { 200000, 100000, 175000, 250000 };
+        String[] codeNumPLN = { "12345", "54321", "12468", "13577" };
+        int id = -1;
+        while (login) {
+            System.out.print("~ Input Username = ");
+            String user = scan.next();
+            System.out.print("~ Input Password = ");
+            String pass = scan.next();
+
+            for (int x = 0; x < userLogin.length; x++) {
+                if (user.equals(userLogin[x]) && pass.equals(password[x])) {
+                    System.out.println("LOGIN SUCCESS !!");
+                    login = false;
+                    menu = true;
+                    id = x;
+                    break;
+                    
+                }
+            }
+            if (login) {
+                System.out.println("Login Failed");
+                break;
+            }
+
+        
+            while (menu) {
+                System.out.println("");
+                System.out.println("====================================");
+                System.out.println( "------ Welcome to Bank Qwerty ------");
+                System.out.println("====================================");
+                System.out.println("Choose the menu : ");
+                System.out.println("1. Withdraw");
+                System.out.println("2. Top up");
+                System.out.println("3. Transfer");
+                System.out.println("4. Payment");
+                System.out.println("5. Balance Info");
+                System.out.println("6. History");
+                System.out.println("7. Exit");
+                System.out.println("Choose your option");
+                int pilihan = scan.nextInt();
+                System.out.println("====================================");
+                switch (pilihan) {
+                    case 1:
+                    Withdraw(history);
+                    break;
+                    
+                        
+                    case 2:
+                    Topup(id, balance, history);
+                    break;
+                    case 3:
+                    Transfer(id, history);
+                    break;
+                    case 4:
+                    Payment(id, balance, billPdam, billPln, payment, codeNumPDAM, userLogin, codeNumPLN, history);
+                    break;
+                    case 5:
+                    balanceinfo(id, balance, userLogin, history);
+                    break;
+
 
                     case 6:
+                    for (int i = 0; i < history.length; i++) {
+                        System.out.println("Transaction " + (i + 1) + ":");
+                        for (int j = 0; j < history[i].length; j++) {
+                            
+                            if (history[i][j]!=null) {
+                                System.out.println("  " + history[i][j]);
+                            }else{
 
-                        break;
+                            }
+                        }
+                        System.out.println("====================================");
+                    }
 
+                    case 7: menu =false;
+                            break;
                     default:
                         System.out.println("Enter the correct option!");
                         break;
