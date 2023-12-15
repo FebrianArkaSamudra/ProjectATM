@@ -358,7 +358,7 @@ public class Systembank {
                         }
                         System.out.println("====================================");
                     }
-
+                    break;
                     case 7: menu =false;
                             break;
                     default:
