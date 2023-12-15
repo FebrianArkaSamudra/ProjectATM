@@ -22,6 +22,7 @@ public class Systembank {
                                 System.out.println("            Thank You :)        ");
                                 System.out.println("====================================");
                                 
+                                
                                 break;
                             case 2:
                                 System.out.println("====================================");
@@ -58,6 +59,16 @@ public class Systembank {
                                 System.out.println("====================================");
                                 
                                 break;
+                        }
+                        System.out.println("Do you want back to menu?(y/n)");
+                        String choosewitdrawal = scan.next();
+
+                        if (choosewitdrawal.equalsIgnoreCase("y")) {
+                            
+                        } 
+                        else{
+                            System.out.println("Thank you");
+                            System.exit(0);
                         }
                         int currentMaxIdx = hist.length-1;
                         hist[currentMaxIdx+1][0] = "user";
@@ -290,7 +301,7 @@ public class Systembank {
                 System.out.println("4. Payment");
                 System.out.println("5. Balance Info");
                 System.out.println("6. History");
-                //System.out.println("7. Exit");
+                System.out.println("7. Exit");
                 System.out.println("Choose your option");
                 int pilihan = scan.nextInt();
                 System.out.println("====================================");
