@@ -237,7 +237,7 @@ public class Systembank {
                         
     }
     
-    static void balanceinfo (int id,String[]balance,String[]userLogin,String[][] hist){
+    static void balanceinfo (int id,int []balance,String[]userLogin,String[][] hist){
         Scanner scan = new Scanner(System.in);
         System.out.println("Balance Info:");
                         System.out.println("Username: " + userLogin[id]);
@@ -321,7 +321,7 @@ public class Systembank {
                     Payment(id, balance, billPdam, billPln, payment, codeNumPDAM, userLogin, codeNumPLN, history);
                     break;
                     case 5:
-                    balanceinfo(id, codeNumPLN, userLogin, history);
+                    balanceinfo(id, balance, userLogin, history);
                     break;
 
 
