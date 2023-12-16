@@ -2,6 +2,9 @@
 import java.util.Scanner;
 
 public class Systembank {
+
+    static int idxHistory = -1;
+
     static void Withdraw (String[][] hist,int[]balance,int id){
     Scanner scan = new Scanner(System.in);
     System.out.println("Please select the withdrawal amount");
@@ -13,7 +16,13 @@ public class Systembank {
                         System.out.println("====================================");
                         System.out.print("Choose Nominal : ");
                         int witdrawalamount = scan.nextInt();
+                        if (witdrawalamount == 5) {
+                            balance[id]=balance[id];
+                        }
+                        else{
                         balance[id]=balance[id]-witdrawalamount;
+                        }
+                        
                         
                         
 
@@ -60,6 +69,7 @@ public class Systembank {
                                 System.out.println("        Transaction Complete     ");
                                 System.out.println("            Thank You :)        ");
                                 System.out.println("====================================");
+                                 balance[id] = balance[id]-typeamount;
                                 
                                 break;
                         }
@@ -73,6 +83,10 @@ public class Systembank {
                             System.out.println("Thank you");
                             System.exit(0);
                         }
+                        idxHistory++;
+                        hist[idxHistory][0] = "user";
+                        hist[idxHistory][1] = witdrawalamount+"";
+                        hist[idxHistory][2] = "withdrawal";
                         
     }   
 
@@ -96,8 +110,15 @@ public class Systembank {
                         
                         
                         
-                    } else
-                    System.out.println("Okey");
+                    } else{      
+                        System.out.println("Okey");
+                    }
+                    idxHistory++;
+                    hist[idxHistory][0] = "user";
+                    hist[idxHistory][1] = inputnominal+"";
+                    hist[idxHistory][2] = "Top-Up";
+
+
                     
                     
                     
@@ -134,6 +155,10 @@ public class Systembank {
                                 System.exit(0);
                                 break;
                         }
+                        idxHistory++;
+                        hist[idxHistory][0] = "user";
+                        hist[idxHistory][1] = transfers+"";
+                        hist[idxHistory][2] = "Transfer";
                         
     }
 
@@ -181,6 +206,10 @@ public class Systembank {
                                                break;
                                            }
                                         }
+                                        idxHistory++;
+                                        hist[idxHistory][0] = "user";
+                                        hist[idxHistory][1] = billPdam[id]+"";
+                                        hist[idxHistory][2] = "PDAM";
                                         break;
                                     
 
@@ -216,7 +245,10 @@ public class Systembank {
                                            break;
                                        }
                                     }
-                                    
+                                    idxHistory++;
+                                    hist[idxHistory][0] = "user";
+                                    hist[idxHistory][1] = billPln[id]+"";
+                                    hist[idxHistory][2] = "PLN";
                                         
                                     break;
 
@@ -250,6 +282,22 @@ public class Systembank {
                             System.exit(0);
                         }
                         
+    }
+
+    static void history(String [][] history){
+    for (int i = 0; i < history.length; i++) {
+                        System.out.println("Transaction " + (i + 1) + ":");
+                        for (int j = 0; j < history[i].length; j++) {
+                            
+                            if (history[i][j]!=null) {
+                                System.out.println("  " + history[i][j]);
+                            }else{
+
+                            }
+                        }
+                        System.out.println("====================================");
+                    }
+                    
     }
     public static void main(String[] args) {
         String[][] history = new String[50][3];
@@ -306,9 +354,7 @@ public class Systembank {
                 switch (pilihan) {
                     case 1:
                     Withdraw(history, balance, id);
-                    break;
-                    
-                        
+                    break;  
                     case 2:
                     Topup(id, balance, history);
                     break;
@@ -324,6 +370,7 @@ public class Systembank {
 
 
                     case 6:
+                    history(history);
                         
 
                     case 7: menu =false;
