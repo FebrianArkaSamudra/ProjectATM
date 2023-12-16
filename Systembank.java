@@ -2,7 +2,7 @@
 import java.util.Scanner;
 
 public class Systembank {
-    static void Withdraw (String[][] hist){
+    static void Withdraw (String[][] hist,int[]balance,int id){
     Scanner scan = new Scanner(System.in);
     System.out.println("Please select the withdrawal amount");
                         System.out.println("1. Rp 100.000");
@@ -13,9 +13,12 @@ public class Systembank {
                         System.out.println("====================================");
                         System.out.print("Choose Nominal : ");
                         int witdrawalamount = scan.nextInt();
+                        balance[id]=balance[id]-witdrawalamount;
+                        
+                        
 
                         switch (witdrawalamount) {
-                            case 1:
+                            case 100000:
                                 System.out.println("====================================");
                                 System.out.println("    You Withdrawal : Rp 100.000  ");
                                 System.out.println("        Transaction Complete     ");
@@ -24,7 +27,7 @@ public class Systembank {
                                 
                                 
                                 break;
-                            case 2:
+                            case 250000:
                                 System.out.println("====================================");
                                 System.out.println("    You Withdrawal : Rp 250.000  ");
                                 System.out.println("        Transaction Complete     ");
@@ -32,7 +35,7 @@ public class Systembank {
                                 System.out.println("====================================");
                                 
                                 break;
-                            case 3:
+                            case 500000:
                                 System.out.println("====================================");
                                 System.out.println("    You Withdrawal : Rp 500.000  ");
                                 System.out.println("        Transaction Complete     ");
@@ -40,7 +43,7 @@ public class Systembank {
                                 System.out.println("====================================");
                                 
                                 break;
-                            case 4:
+                            case 1000000:
                                 System.out.println("====================================");
                                 System.out.println("   You Withdrawal : Rp 1.000.000");
                                 System.out.println("        Transaction Complete     ");
@@ -70,10 +73,6 @@ public class Systembank {
                             System.out.println("Thank you");
                             System.exit(0);
                         }
-                        int currentMaxIdx = hist.length-1;
-                        hist[currentMaxIdx+1][0] = "user";
-                        hist[currentMaxIdx+1][1] = witdrawalamount+"";
-                        hist[currentMaxIdx+1][2] = "withdrawal";
                         
     }   
 
@@ -107,16 +106,15 @@ public class Systembank {
                     
     }
 
-    static void Transfer(int id,String[][] hist){
+    static void Transfer(int id,String[][] hist,int[]balance){
         Scanner scan = new Scanner(System.in);
-     int[] balancee = { 1000000, 1000000, 1000000, 1000000 };
                         System.out.println("Input account :");
                         String account = scan.next();
                         System.out.println("Input nominal :");
                         int transfers = scan.nextInt();
                         System.out.println("balance succeeded transfers to " + account + "amount of Rp." + transfers);
-                        int balanceAmount = balancee[id] - transfers;
-                        System.out.println("Your balance amount is " + balanceAmount);
+                        balance[id] = balance[id] - transfers;
+                        System.out.println("Your balance amount is " + balance[id]);
                         System.out.println("====================================");
                         System.out.println(" balance succeeded transfers to " + account);
                         System.out.println("   amount of : Rp " + transfers);
@@ -307,7 +305,7 @@ public class Systembank {
                 System.out.println("====================================");
                 switch (pilihan) {
                     case 1:
-                    Withdraw(history);
+                    Withdraw(history, balance, id);
                     break;
                     
                         
@@ -315,7 +313,7 @@ public class Systembank {
                     Topup(id, balance, history);
                     break;
                     case 3:
-                    Transfer(id, history);
+                    Transfer(id, history, balance);
                     break;
                     case 4:
                     Payment(id, balance, billPdam, billPln, payment, codeNumPDAM, userLogin, codeNumPLN, history);
