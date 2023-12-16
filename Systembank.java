@@ -190,6 +190,10 @@ public class Systembank {
                                                     System.out.println("your payment is succesfull");
                                                     balance[id] = balance[id] - billPdam[id];
                                                     System.out.println("Your balance amount is " + balance[id]);
+                                                    idxHistory++;
+                                                    hist[idxHistory][0] = "user";
+                                                    hist[idxHistory][1] = billPdam[id]+"";
+                                                    hist[idxHistory][2] = "PDAM";
                                                     break;
                                                 case "n":
                                                     System.out.println("Thank you");
@@ -206,10 +210,7 @@ public class Systembank {
                                                break;
                                            }
                                         }
-                                        idxHistory++;
-                                        hist[idxHistory][0] = "user";
-                                        hist[idxHistory][1] = billPdam[id]+"";
-                                        hist[idxHistory][2] = "PDAM";
+                                        
                                         break;
                                     
 
@@ -230,6 +231,10 @@ public class Systembank {
                                                 System.out.println("your payment is succesfull");
                                                 balance[id] = balance[id] - billPln[id];
                                                 System.out.println("Your balance amount is " + balance[id]);
+                                                idxHistory++;
+                                                hist[idxHistory][0] = "user";
+                                                hist[idxHistory][1] = billPln[id]+"";
+                                                hist[idxHistory][2] = "PLN";
                                                 break;
                                             case "n":
                                                 System.out.println("Thank you");
@@ -245,10 +250,7 @@ public class Systembank {
                                            break;
                                        }
                                     }
-                                    idxHistory++;
-                                    hist[idxHistory][0] = "user";
-                                    hist[idxHistory][1] = billPln[id]+"";
-                                    hist[idxHistory][2] = "PLN";
+                                    
                                         
                                     break;
 
