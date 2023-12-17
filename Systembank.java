@@ -5,7 +5,7 @@ public class Systembank {
 
     static int idxHistory = -1;
 
-    static void Withdraw (String[][] hist){
+    static void Withdraw (String[][] hist,int[]balance,int id){
     Scanner scan = new Scanner(System.in);
     System.out.println("Please select the withdrawal amount");
                         System.out.println("1. Rp 100.000");
@@ -16,6 +16,23 @@ public class Systembank {
                         System.out.println("====================================");
                         System.out.print("Choose Nominal : ");
                         int witdrawalamount = scan.nextInt();
+                        if (witdrawalamount == 5) {
+                            System.out.println("Multiples Of Rp 50.000");
+                            System.out.print("Type The Amount : ");
+                            witdrawalamount = scan.nextInt();
+                            System.out.println("====================================");
+                            System.out.println("   You Withdrawal : Rp " + witdrawalamount);
+                            System.out.println("        Transaction Complete     ");
+                            System.out.println("            Thank You :)        ");
+                            System.out.println("====================================");
+                            balance[id] -= witdrawalamount;
+                        }
+                        else{
+                        balance[id]=balance[id]-witdrawalamount;
+                        }
+                        
+                        
+                        
 
                         switch (witdrawalamount) {
                             case 100000:
@@ -51,17 +68,7 @@ public class Systembank {
                                 System.out.println("====================================");
                                 
                                 break;
-                            case 5:
-                                System.out.println("Multiples Of Rp 50.000");
-                                System.out.print("Type The Amount : ");
-                                int typeamount = scan.nextInt();
-                                System.out.println("====================================");
-                                System.out.println("   You Withdrawal : Rp " + typeamount);
-                                System.out.println("        Transaction Complete     ");
-                                System.out.println("            Thank You :)        ");
-                                System.out.println("====================================");
-                                
-                                break;
+                        
                         }
                         System.out.println("Do you want back to menu?(y/n)");
                         String choosewitdrawal = scan.next();
@@ -100,29 +107,32 @@ public class Systembank {
                         
                         
                         
-                    } else{
+                    } else{      
                         System.out.println("Okey");
                     }
-                        idxHistory++;
-                        hist[idxHistory][0] = "user";
-                        hist[idxHistory][1] = inputnominal+"";
-                        hist[idxHistory][2] = "Top-Up";
+                    idxHistory++;
+                    hist[idxHistory][0] = "user";
+                    hist[idxHistory][1] = inputnominal+"";
+                    hist[idxHistory][2] = "Top-Up";
+
+
+                    
                     
                     
                 
-
+                    
+                    
     }
 
-    static void Transfer(int id,String[][] hist){
+    static void Transfer(int id,String[][] hist,int[]balance){
         Scanner scan = new Scanner(System.in);
-     int[] balancee = { 1000000, 1000000, 1000000, 1000000 };
                         System.out.println("Input account :");
                         String account = scan.next();
                         System.out.println("Input nominal :");
                         int transfers = scan.nextInt();
                         System.out.println("balance succeeded transfers to " + account + "amount of Rp." + transfers);
-                        int balanceAmount = balancee[id] - transfers;
-                        System.out.println("Your balance amount is " + balanceAmount);
+                        balance[id] = balance[id] - transfers;
+                        System.out.println("Your balance amount is " + balance[id]);
                         System.out.println("====================================");
                         System.out.println(" balance succeeded transfers to " + account);
                         System.out.println("   amount of : Rp " + transfers);
@@ -146,12 +156,13 @@ public class Systembank {
                         hist[idxHistory][0] = "user";
                         hist[idxHistory][1] = transfers+"";
                         hist[idxHistory][2] = "Transfer";
+                        
     }
 
     static void Payment(int id,int[]balance,int[]billPdam,int[]billPln,boolean payment,String[] codeNumPDAM,String[] userLogin,String[] codeNumPLN,String[][] hist){
         Scanner scan = new Scanner(System.in);
-        
         do {
+                            
                             System.out.println("\n Menu payment");
                             System.out.println("1. PDAM");
                             System.out.println("2. PLN ");
@@ -176,6 +187,10 @@ public class Systembank {
                                                     System.out.println("your payment is succesfull");
                                                     balance[id] = balance[id] - billPdam[id];
                                                     System.out.println("Your balance amount is " + balance[id]);
+                                                    idxHistory++;
+                                                    hist[idxHistory][0] = "user";
+                                                    hist[idxHistory][1] = billPdam[id]+"";
+                                                    hist[idxHistory][2] = "PDAM";
                                                     break;
                                                 case "n":
                                                     System.out.println("Thank you");
@@ -192,10 +207,7 @@ public class Systembank {
                                                break;
                                            }
                                         }
-                                        idxHistory++;
-                                        hist[idxHistory][0] = "user";
-                                        hist[idxHistory][1] = billPdam[id]+"";
-                                        hist[idxHistory][2] = "PDAM";
+                                        
                                         break;
                                     
 
@@ -216,6 +228,10 @@ public class Systembank {
                                                 System.out.println("your payment is succesfull");
                                                 balance[id] = balance[id] - billPln[id];
                                                 System.out.println("Your balance amount is " + balance[id]);
+                                                idxHistory++;
+                                                hist[idxHistory][0] = "user";
+                                                hist[idxHistory][1] = billPln[id]+"";
+                                                hist[idxHistory][2] = "PLN";
                                                 break;
                                             case "n":
                                                 System.out.println("Thank you");
@@ -231,10 +247,7 @@ public class Systembank {
                                            break;
                                        }
                                     }
-                                    idxHistory++;
-                                    hist[idxHistory][0] = "user";
-                                    hist[idxHistory][1] = billPln[id]+"";
-                                    hist[idxHistory][2] = "PLN";
+                                    
                                         
                                     break;
 
@@ -267,12 +280,24 @@ public class Systembank {
                             System.out.println("Thank you");
                             System.exit(0);
                         }
-                        idxHistory++;
-                        hist[idxHistory][0] = "user";
-                        hist[idxHistory][1] = balance[id]+"";
-                        hist[idxHistory][2] = "Balance Info";
                         
     }
+
+    static void history(String [][] history){
+        for (int i = 0; i < history.length; i++) {
+            if (history[i][0] != null) {
+                System.out.println("Transaction " + (i + 1) + ":");
+                for (int j = 0; j < history[i].length; j++) {
+                    if (history[i][j] != null) {
+                        System.out.println("  " + history[i][j]);
+                        
+                    }
+                }
+                System.out.println("====================================");
+            }
+        }
+    }
+    
     public static void main(String[] args) {
         String[][] history = new String[50][3];
         Scanner scan = new Scanner(System.in);
@@ -327,15 +352,13 @@ public class Systembank {
                 System.out.println("====================================");
                 switch (pilihan) {
                     case 1:
-                    Withdraw(history);
-                    break;
-                    
-                        
+                    Withdraw(history, balance, id);
+                    break;  
                     case 2:
                     Topup(id, balance, history);
                     break;
                     case 3:
-                    Transfer(id, history);
+                    Transfer(id, history, balance);
                     break;
                     case 4:
                     Payment(id, balance, billPdam, billPln, payment, codeNumPDAM, userLogin, codeNumPLN, history);
@@ -346,19 +369,9 @@ public class Systembank {
 
 
                     case 6:
-                    for (int i = 0; i < history.length; i++) {
-                        System.out.println("Transaction " + (i + 1) + ":");
-                        for (int j = 0; j < history[i].length; j++) {
-                            
-                            if (history[i][j]!=null) {
-                                System.out.println("  " + history[i][j]);
-                            }else{
+                    history(history);
+                        
 
-                            }
-                        }
-                        System.out.println("====================================");
-                    }
-                    break;
                     case 7: menu =false;
                             break;
                     default:
